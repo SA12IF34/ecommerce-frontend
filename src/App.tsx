@@ -1,5 +1,5 @@
-import {Routes, Route, useNavigate} from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import {Routes, Route} from 'react-router-dom';
+import { useContext } from 'react';
 import { Context } from './context/ContextProvider';
 import { api } from './api';
 
