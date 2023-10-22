@@ -21,7 +21,7 @@ import './App.css';
 
 function App() {
 
-  const {access, setAccess, setRefresh, authenticated} = useContext(Context);
+  const {access, authenticated} = useContext(Context);
 
   async function handleCheckout() {
     const response = await api.post('checkout/', {
