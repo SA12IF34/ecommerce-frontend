@@ -57,8 +57,8 @@ function App() {
       <Layout authenticated={authenticated} api={api}>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/sign-in' element={<SignIn setAccess={setAccess} setRefresh={setRefresh} api={api} />} />
-          <Route path='/sign-up' element={<SignUp setAccess={setAccess} setRefresh={setRefresh} api={api} />} />
+          <Route path='/sign-in' element={<SignIn api={api} />} />
+          <Route path='/sign-up' element={<SignUp api={api} />} />
           <Route path='/search?' element={<Search />} />
           <Route path='/perfume/:name' element={<Perfume api={api} access={access} handleBuy={handleBuy} />} /> 
           <Route path='/cart' element={<Cart api={api} access={access} handleBuy={handleBuy} />} />

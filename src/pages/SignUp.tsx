@@ -5,12 +5,10 @@ import {AxiosError, AxiosInstance} from 'axios'
 import '../App.css';
 
 type props = {
-  setAccess: any,
-  setRefresh: any,
   api: AxiosInstance
 }
 
-function SignUp({setAccess, setRefresh, api}: props) {
+function SignUp({api}: props) {
 
   const fnameRef = useRef() as RefObject<HTMLInputElement>;
   const lnameRef = useRef() as RefObject<HTMLInputElement>;

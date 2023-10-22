@@ -5,12 +5,10 @@ import {AxiosInstance} from 'axios'
 import '../App.css';
 
 type props = {
-  setAccess: any,
-  setRefresh: any,
   api: AxiosInstance
 }
 
-function SignIn({setAccess, setRefresh, api}: props) {
+function SignIn({api}: props) {
 
   const emailRef = useRef() as RefObject<HTMLInputElement>;
   const passwordRef = useRef() as RefObject<HTMLInputElement>;
