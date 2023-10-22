@@ -33,6 +33,7 @@ function ContextProvider({children}: {children: ReactNode}) {
     
     if (document.cookie.match(/access/) && num === 1) {
         const refreshToken = document.cookie.split(';')[1].split('=')[1];
+        console.log(refreshToken)
         handleRefreshTokens(refreshToken);
     }
 
