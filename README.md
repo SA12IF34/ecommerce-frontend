@@ -13,7 +13,7 @@ to run all the tests
 ```
 npm run test
 ```
-to runn tests of certain file
+to run tests of certain file
 ```
 npm run test <name>.test.tsx
 ```
