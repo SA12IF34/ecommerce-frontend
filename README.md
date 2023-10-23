@@ -18,4 +18,4 @@ to run tests of certain file
 npm run test <name>.test.tsx
 ```
 ___
-[link to the website](https://scentchan.saifchan.online)
+[link to the website](https://scentchan.saifchan.online){:target="_blank"}
