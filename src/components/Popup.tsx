@@ -4,19 +4,19 @@ type props = {
     topic: string | null,
     handleEvent: any | null,
     copy: string | null,
-    button: string | null
+    button: string | null,
+    setPopup: any
 }
 
 
-function Popup({topic, handleEvent, copy, button}: props) {
+function Popup({setPopup, topic, handleEvent, copy, button}: props) {
     
   function handleCopy() {
     navigator.clipboard.writeText((copy as string));
   }
 
   function handleClose() {
-    const popup = document.querySelector('.popup') as HTMLElement;
-    popup.remove();
+    setPopup(<></>)
   }
 
   return (
@@ -28,11 +28,11 @@ function Popup({topic, handleEvent, copy, button}: props) {
             }} className='copy'>{copy}</span>
         )}
         <div>
-            {button && (
-                <button onClick={() => {
-                    handleEvent();
-                }} className='button'>{button}</button>
-            )}
+          {button && (
+              <button onClick={() => {
+                  handleEvent();
+              }} className='button'>{button}</button>
+          )}
             <button onClick={() => {
                 handleClose();
             }} className='close'>close</button>

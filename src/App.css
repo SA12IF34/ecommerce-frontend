@@ -573,7 +573,7 @@ footer span {
 
 .popup {
   max-width: 600px;
-  width: 950%;
+  width: 95%;
   height: 400px;
   padding: 20px;
   border: 2px solid black;
@@ -583,10 +583,14 @@ footer span {
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+}
+
+.popup>p {
+  font-size: 1.05em;
 }
 
 .popup>div {
