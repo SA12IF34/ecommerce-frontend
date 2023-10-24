@@ -70,6 +70,7 @@ function Header({authenticated, api, setPopup}: props) {
   async function handleLogOut() {
     window.localStorage.removeItem('access');
     window.localStorage.removeItem('refresh');
+    window.location.assign('/');
   }
 
   useEffect(() => {
