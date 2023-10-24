@@ -4,6 +4,9 @@ import {AiOutlineSearch, AiOutlineShoppingCart} from 'react-icons/ai';
 import {TbShoppingCartCheck} from 'react-icons/tb';
 import { AxiosInstance } from 'axios';
 import { Context } from '../context/ContextProvider';
+
+import Popup from '../components/Popup';
+
 import companies from '../utils/companies.json';
 import gender from '../utils/gender.json';
 import notes from '../utils/top_notes.json';
@@ -11,10 +14,11 @@ import accords from '../utils/accords.json';
 
 type props = {
   authenticated: boolean,
-  api: AxiosInstance
+  api: AxiosInstance,
+  setPopup: any
 }
 
-function Header({authenticated, api}: props) {
+function Header({authenticated, api, setPopup}: props) {
 
   const {setSearchData} = useContext(Context)
   const navigate = useNavigate();
@@ -26,6 +30,7 @@ function Header({authenticated, api}: props) {
   const accordsRef = useRef() as RefObject<HTMLSelectElement>;
 
   const [state, setState] = useState<number>(0);
+  
 
   async function handleSearch() {
     const notSearch = searchRef.current?.value === '';
@@ -60,6 +65,11 @@ function Header({authenticated, api}: props) {
         
       }
     }
+  }
+
+  async function handleLogOut() {
+    window.localStorage.removeItem('access');
+    window.localStorage.removeItem('refresh');
   }
 
   useEffect(() => {
@@ -130,7 +140,9 @@ function Header({authenticated, api}: props) {
               <AiOutlineShoppingCart />
             </button>
           </Link>
-          <button>
+          <button onClick={() => {
+            setPopup(<Popup topic='Are you sure you want to log out?' handleEvent={handleLogOut} button='yes, log me out' copy={null} />)
+          }}>
             Log Out
           </button>
         </> : 

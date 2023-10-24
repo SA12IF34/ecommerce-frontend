@@ -36,8 +36,8 @@ function SignUp({api}: props) {
 
         if (response.status === 201) {
           const credentials = await response.data;
-          document.cookie=`access=${credentials['access']};`;
-          document.cookie=`refresh=${credentials['refresh']}`;
+          window.localStorage.setItem('access', credentials['access']);
+          window.localStorage.setItem('refresh', credentials['refresh']);
           
           window.location.assign('/');
         }

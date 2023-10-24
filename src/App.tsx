@@ -1,5 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from './context/ContextProvider';
 import { api } from './api';
 
@@ -14,6 +14,7 @@ import Boughts from './pages/Boughts';
 import PageNotFound from './pages/PageNotFound';
 
 import './App.css';
+import Popup from './components/Popup';
 
 
 
@@ -23,38 +24,57 @@ function App() {
 
   const {access, authenticated} = useContext(Context);
 
+  const [popup, setPopup] = useState<any>(null);
+
   async function handleCheckout() {
-    const response = await api.post('checkout/', {
-      'redirect': window.location.href
-    }, {
-      headers: {
-        'Authorization': 'Bearer '+access
+    try {
+      const response = await api.post('checkout/', {
+        'redirect': window.location.href
+      }, {
+        headers: {
+          'Authorization': 'Bearer '+access
+        }
+      })
+  
+      if (response.status === 401) throw 'authorization';
+      if (response.status === 200) {
+        const data = await response.data;
+        window.location.assign(data['url']);
       }
-    })
-    if (response.status === 200) {
-      const data = await response.data;
-      window.location.assign(data['url']);
+    } catch (error) {
+      if (error === 'authorization') {
+        alert('there is an authorization problem, sign out and sign in again.');
+      }
     }
   }
 
   async function handleBuy(name: string, image: string) {
-    const response = await api.post('boughts/', {
-      'product_name': name,
-      'image': image
-    }, {
-      headers: {
-        'Authorization': 'Bearer '+access
-      }
-    });
 
-    if (response.status === 201) {
-      handleCheckout();
+    try {
+      const response = await api.post('boughts/', {
+        'product_name': name,
+        'image': image
+      }, {
+        headers: {
+          'Authorization': 'Bearer '+access
+        }
+      });
+      
+      if (response.status === 401) throw 'authorization';
+      if (response.status === 201) {
+        handleCheckout();
+      }
+    } catch (error) {
+      if (error === 'authorization') {
+        alert('there is an authorization problem, sign out and sign in again.')
+      }
     }
   }
 
   return (
     <>
-      <Layout authenticated={authenticated} api={api}>
+      {popup && popup}
+      <Layout access={access} authenticated={authenticated} api={api} setPopup={setPopup}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/sign-in' element={<SignIn api={api} />} />

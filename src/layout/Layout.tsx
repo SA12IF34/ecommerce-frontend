@@ -6,14 +6,16 @@ import { AxiosInstance } from 'axios';
 
 type props = {
   children: React.ReactNode, 
+  access: string,
   authenticated: boolean,
-  api: AxiosInstance
+  api: AxiosInstance,
+  setPopup: any
 }
 
-function Layout({children, authenticated, api}: props) {
+function Layout({children, access, authenticated, api, setPopup}: props) {
   return (
     <>
-      <Header authenticated={authenticated} api={api} />
+      <Header access={access} authenticated={authenticated} api={api} setPopup={setPopup} />
       {children}
       <Footer />
     </>

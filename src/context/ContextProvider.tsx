@@ -20,8 +20,9 @@ function ContextProvider({children}: {children: ReactNode}) {
 
     if (response.status === 200) {
         const credentials = await response.data;
-        document.cookie = `access=${credentials['access']};`;
-        document.cookie = `refresh=${credentials['refresh']}`;
+        window.localStorage.setItem('access', credentials['access']);
+        window.localStorage.setItem('refresh', credentials['refresh']);
+      
         setAccess(credentials['access']);
         setRefresh(credentials['refresh']);
         setAuthenticated(true);
@@ -31,13 +32,13 @@ function ContextProvider({children}: {children: ReactNode}) {
 
   useEffect(() => {
     
-    if (document.cookie.match(/access/) && num === 1) {
-        const refreshToken = document.cookie.split(';')[2].split('=')[1];
-        handleRefreshTokens(refreshToken);
+    if (window.localStorage.getItem('refresh') && num === 1) {
+      const refreshToken = window.localStorage.getItem('refresh') as string;  
+      handleRefreshTokens(refreshToken);
     }
 
     setInterval(() => {
-        const refreshToken = document.cookie.split(';')[1].split('=')[1];
+        const refreshToken = window.localStorage.getItem('refresh') as string;
         handleRefreshTokens(refreshToken);
     }, 900000)
 

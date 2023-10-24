@@ -20,19 +20,25 @@ function Perfume({api, access, handleBuy}: {api: AxiosInstance, access: string, 
   }
 
   async function handleAddToCart() {
-    console.log(access)
-    const response = await api.post('cart/', {
-      'product_name': perfume['name' as keyof typeof perfume],
-      'price': 30,
-      'image': perfume['image' as keyof typeof perfume]
-    }, {
-      headers: {
-        'Authorization': 'Bearer '+access
+    try {
+      const response = await api.post('cart/', {
+        'product_name': perfume['name' as keyof typeof perfume],
+        'price': 30,
+        'image': perfume['image' as keyof typeof perfume]
+      }, {
+        headers: {
+          'Authorization': 'Bearer '+access
+        }
+      });
+  
+      if (response.status === 401) throw 'authorization';
+      if (response.status === 201) {
+        alert('item has been added');
       }
-    });
-
-    if (response.status === 201) {
-      alert('item has been added');
+    } catch (error) {
+      if (error === 'authorization') {
+        alert('there is an authorization problem, sign out and sign in again.');
+      }
     }
   }
 

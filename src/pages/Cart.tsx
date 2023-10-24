@@ -20,18 +20,25 @@ function Cart({api, access, handleBuy}: {api: AxiosInstance, access: string, han
   }
 
   async function handleDelete(name: string, image: string | null = null, state: string | null = null) {
-    const response = await api.delete(`cart/${name}/delete/`, {
-        headers: {
-            'Authorization': 'Bearer '+access 
+    try {
+        const response = await api.delete(`cart/${name}/delete/`, {
+            headers: {
+                'Authorization': 'Bearer '+access 
+            }
+        });
+    
+        if (response.status === 401) throw 'authorization';
+        if (response.status === 204) {
+            if (state === 'buy') {
+                handleBuy(name, image)
+            }
+            else {
+                window.location.reload();
+            }
         }
-    });
-
-    if (response.status === 204) {
-        if (state === 'buy') {
-            handleBuy(name, image)
-        }
-        else {
-            window.location.reload();
+    } catch (error) {
+        if (error === 'auhorization') {
+            alert('there is an authorization problem, sign out and sign in again.')
         }
     }
   }

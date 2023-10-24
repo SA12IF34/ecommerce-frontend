@@ -6,15 +6,22 @@ function Boughts({api, access}: {api: AxiosInstance, access: string}) {
   const [items, setItems] = useState<Array<object>>([]);
 
   async function handleGet() {
-    const response = await api.get('boughts/', {
-      headers: {
-        'Authorization': 'Bearer '+access
+    try {
+      const response = await api.get('boughts/', {
+        headers: {
+          'Authorization': 'Bearer '+access
+        }
+      })
+  
+      if (response.status === 401) throw 'authorization';
+      if (response.status === 200) {
+        const data = await response.data;
+        setItems(data)
       }
-    })
-
-    if (response.status === 200) {
-      const data = await response.data;
-      setItems(data)
+    } catch (error) {
+      if (error === 'authorization') {
+        alert('there is an authorization problem, sign out and sign in again.')
+      }
     }
   }
 
