@@ -569,3 +569,31 @@ footer span {
       margin-top: 10px;
     }
 }
+
+
+.popup {
+  max-width: 600px;
+  width: 950%;
+  height: 400px;
+  padding: 20px;
+  border: 2px solid black;
+  background-color: #eee;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.popup>div {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: end;
+}
+.popup>div button {
+  padding: 5px;
+  background-color: #d5d5d5;
+  font-size: 1.05em;
+  border-radius: 7px;
+  margin: 0 10px;
+}

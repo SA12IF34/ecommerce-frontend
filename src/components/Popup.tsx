@@ -27,12 +27,12 @@ function Popup({topic, handleEvent, copy, button}: props) {
                 handleCopy();
             }} className='copy'>{copy}</span>
         )}
-        {button && (
-            <button onClick={() => {
-                handleEvent();
-            }} className='button'>{button}</button>
-        )}
         <div>
+            {button && (
+                <button onClick={() => {
+                    handleEvent();
+                }} className='button'>{button}</button>
+            )}
             <button onClick={() => {
                 handleClose();
             }} className='close'>close</button>
