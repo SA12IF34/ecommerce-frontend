@@ -14,7 +14,6 @@ import Boughts from './pages/Boughts';
 import PageNotFound from './pages/PageNotFound';
 
 import './App.css';
-import Popup from './components/Popup';
 
 
 
