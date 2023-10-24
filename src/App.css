@@ -582,6 +582,11 @@ footer span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 .popup>div {
