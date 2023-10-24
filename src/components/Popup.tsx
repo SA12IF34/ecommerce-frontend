@@ -13,6 +13,7 @@ function Popup({setPopup, topic, handleEvent, copy, button}: props) {
     
   function handleCopy() {
     navigator.clipboard.writeText((copy as string));
+    alert('copied text')
   }
 
   function handleClose() {
@@ -31,6 +32,7 @@ function Popup({setPopup, topic, handleEvent, copy, button}: props) {
           {button && (
               <button onClick={() => {
                   handleEvent();
+
               }} className='button'>{button}</button>
           )}
             <button onClick={() => {
