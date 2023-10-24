@@ -23,7 +23,7 @@ function Popup({setPopup, topic, handleEvent, copy, button}: props) {
     <div className='popup'>
         <p className='topic'>{topic}</p>
         {copy && (
-            <span onClick={() => {
+            <span style={{cursor: 'pointer'}} onClick={() => {
                 handleCopy();
             }} className='copy'>{copy}</span>
         )}

@@ -79,8 +79,8 @@ function App() {
           <Route path='/sign-in' element={<SignIn api={api} />} />
           <Route path='/sign-up' element={<SignUp api={api} />} />
           <Route path='/search?' element={<Search />} />
-          <Route path='/perfume/:name' element={<Perfume api={api} access={access} handleBuy={handleBuy} />} /> 
-          <Route path='/cart' element={<Cart api={api} access={access} handleBuy={handleBuy} />} />
+          <Route path='/perfume/:name' element={<Perfume api={api} access={access} handleBuy={handleBuy} setPopup={setPopup} />} /> 
+          <Route path='/cart' element={<Cart api={api} access={access} handleBuy={handleBuy} setPopup={setPopup} />} />
           <Route path='/boughts' element={<Boughts api={api} access={access} />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>

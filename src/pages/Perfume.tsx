@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AxiosInstance } from "axios";
 
-function Perfume({api, access, handleBuy}: {api: AxiosInstance, access: string, handleBuy: any}) {
+import Popup from "../components/Popup";
+
+function Perfume({api, access, handleBuy, setPopup}: {api: AxiosInstance, access: string, handleBuy: any, setPopup: any}) {
 
   const [perfume, setPerfume] = useState<object>({});
   const {name} = useParams();
@@ -46,6 +48,7 @@ function Perfume({api, access, handleBuy}: {api: AxiosInstance, access: string, 
     handleGetPerfume();
   }, [])
 
+  
 
   return (
     <div className='perfumePage grid-main'>
@@ -63,7 +66,11 @@ function Perfume({api, access, handleBuy}: {api: AxiosInstance, access: string, 
           </div>
           <div className='buttons'>
             <button onClick={() => {
-              handleBuy(perfume['name' as keyof typeof perfume], perfume['image' as keyof typeof perfume]);
+              function handleProceed() {
+                handleBuy(perfume['name' as keyof typeof perfume], perfume['image' as keyof typeof perfume]);
+              }
+              setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} copy={'4242424242424242'} button={'proceed'} handleEvent={handleProceed}  />)
+              
             }} className='buy'>Buy</button>
             <button onClick={() => {
               handleAddToCart();

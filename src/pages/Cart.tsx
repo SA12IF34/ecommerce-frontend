@@ -2,7 +2,9 @@ import {useState, useEffect} from 'react';
 import '../App.css';
 import { AxiosInstance } from 'axios';
 
-function Cart({api, access, handleBuy}: {api: AxiosInstance, access: string, handleBuy: any}) {
+import Popup from '../components/Popup';
+
+function Cart({api, access, handleBuy, setPopup}: {api: AxiosInstance, access: string, handleBuy: any, setPopup: any}) {
 
   const [items, setItems] = useState<Array<object>>([])
 
@@ -67,7 +69,10 @@ function Cart({api, access, handleBuy}: {api: AxiosInstance, access: string, han
                                 handleDelete(item['product_name' as keyof typeof item]);
                             }} className='remove'>remove</button>
                             <button onClick={() => {
-                                handleDelete(item['product_name' as keyof typeof item], item['image' as keyof typeof item], 'buy');
+                                function handleProceed() {
+                                    handleDelete(item['product_name' as keyof typeof item], item['image' as keyof typeof item], 'buy');
+                                }
+                                setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} copy={'4242424242424242'} button={'proceed'} handleEvent={handleProceed} />)
                             }} className='buy'>buy</button>
                         </div>
                     </div>
