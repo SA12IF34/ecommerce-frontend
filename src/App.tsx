@@ -74,7 +74,7 @@ function App() {
   return (
     <>
       {popup && popup}
-      <Layout access={access} authenticated={authenticated} api={api} setPopup={setPopup}>
+      <Layout authenticated={authenticated} api={api} setPopup={setPopup}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/sign-in' element={<SignIn api={api} />} />
