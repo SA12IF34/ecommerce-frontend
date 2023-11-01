@@ -12,7 +12,11 @@ type props = {
 function Popup({setPopup, topic, handleEvent, button, copy}: props) {
     
   function handleCopy() {
-    navigator.clipboard.writeText('4242424242424242');
+    const ele = document.createElement('input') as HTMLInputElement;
+    ele.value = '4242424242424242';
+    ele.select()
+    ele.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(ele.value);
     alert('copied text')
   }
 
