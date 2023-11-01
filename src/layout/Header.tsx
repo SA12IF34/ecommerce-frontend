@@ -142,7 +142,7 @@ function Header({authenticated, api, setPopup}: props) {
             </button>
           </Link>
           <button onClick={() => {
-            setPopup(<Popup setPopup={setPopup} topic='Are you sure you want to log out?' handleEvent={handleLogOut} button='yes, log me out' copy={null} />)
+            setPopup(<Popup setPopup={setPopup} topic='Are you sure you want to log out?' handleEvent={handleLogOut} button='yes, log me out' copy={false} />)
           }}>
             Log Out
           </button>
