@@ -72,7 +72,7 @@ function Cart({api, access, handleBuy, setPopup}: {api: AxiosInstance, access: s
                                 function handleProceed() {
                                     handleDelete(item['product_name' as keyof typeof item], item['image' as keyof typeof item], 'buy');
                                 }
-                                setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} copy={'4242424242424242'} button={'proceed'} handleEvent={handleProceed} />)
+                                setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} button={'proceed'} handleEvent={handleProceed} copy={true} />)
                             }} className='buy'>buy</button>
                         </div>
                     </div>

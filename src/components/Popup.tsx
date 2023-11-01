@@ -3,16 +3,16 @@ import '../App.css';
 type props = {
     topic: string | null,
     handleEvent: any | null,
-    copy: string | null,
     button: string | null,
-    setPopup: any
+    setPopup: any,
+    copy: boolean
 }
 
 
-function Popup({setPopup, topic, handleEvent, copy, button}: props) {
+function Popup({setPopup, topic, handleEvent, button, copy}: props) {
     
   function handleCopy() {
-    navigator.clipboard.writeText((copy as string));
+    navigator.clipboard.writeText('4242424242424242');
     alert('copied text')
   }
 
@@ -26,7 +26,7 @@ function Popup({setPopup, topic, handleEvent, copy, button}: props) {
         {copy && (
             <span style={{cursor: 'pointer'}} onClick={() => {
                 handleCopy();
-            }} className='copy'>{copy}</span>
+            }} className='copy'>{'4242424242424242'}</span>
         )}
         <div>
           {button && (

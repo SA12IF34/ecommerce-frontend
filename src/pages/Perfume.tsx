@@ -69,7 +69,7 @@ function Perfume({api, access, handleBuy, setPopup}: {api: AxiosInstance, access
               function handleProceed() {
                 handleBuy(perfume['name' as keyof typeof perfume], perfume['image' as keyof typeof perfume]);
               }
-              setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} copy={'4242424242424242'} button={'proceed'} handleEvent={handleProceed}  />)
+              setPopup(<Popup setPopup={setPopup} topic={'copy the card number below to proceed the checkout.'} button={'proceed'} handleEvent={handleProceed} copy={true} />)
               
             }} className='buy'>Buy</button>
             <button onClick={() => {
